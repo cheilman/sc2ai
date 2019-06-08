@@ -4,13 +4,13 @@
 #include "sc2utils/sc2_manage_process.h"
 #include "sc2utils/sc2_arg_parser.h"
 
-#include "Cryptbot.h"
+#include "cahbot.h"
 #include "LadderInterface.h"
 
 #ifdef DEBUG
 int main(int argc, char* argv[])
 {
-	CryptBot bot;
+	CAHBot bot;
 	sc2::Coordinator coordinator;
 	if (!coordinator.LoadSettings(argc, argv))
 	{
@@ -23,13 +23,11 @@ int main(int argc, char* argv[])
 	coordinator.SetParticipants({
 		CreateParticipant(sc2::Race::Protoss, &bot),
 		//sc2::PlayerSetup(sc2::PlayerType::Observer,Util::GetRaceFromString(enemyRaceString)),
-		CreateComputer(sc2::Race::Protoss, sc2::Difficulty::Easy)
+		CreateComputer(sc2::Race::Protoss, sc2::Difficulty::VeryEasy)
 	});
 	// Start the game.
 	coordinator.LaunchStarcraft();
-	//coordinator.StartGame("C:/Program Files (x86)/StarCraft II/Maps/InterloperLE.SC2Map");
-	coordinator.StartGame("Interloper LE");
-
+	coordinator.StartGame("C:\\Program Files (x86)\\StarCraft II\\Maps\\AutomatonLE.SC2Map");
 
 	// Step forward the game simulation.
 	while (coordinator.Update())
@@ -42,7 +40,7 @@ int main(int argc, char* argv[])
 int main(int argc, char* argv[]) 
 {
 
-	RunBot(argc, argv, new CryptBot(), sc2::Race::Protoss);
+	RunBot(argc, argv, new CAHBot(), sc2::Race::Protoss);
 
 	return 0;
 }
