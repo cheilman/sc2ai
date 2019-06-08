@@ -3,6 +3,7 @@
 #include "sc2lib/sc2_lib.h"
 #include "sc2utils/sc2_manage_process.h"
 #include "sc2utils/sc2_arg_parser.h"
+#include "absl/strings/str_join.h"
 
 #include "cahbot.h"
 #include "LadderInterface.h"
@@ -10,6 +11,11 @@
 #ifdef DEBUG
 int main(int argc, char* argv[])
 {
+	std::vector<std::string> v = { "foo","bar","baz" };
+	std::string s = absl::StrJoin(v, "-");
+
+	std::cout << "Joined string: " << s << "\n";
+
 	CAHBot bot;
 	sc2::Coordinator coordinator;
 	if (!coordinator.LoadSettings(argc, argv))
